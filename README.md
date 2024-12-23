@@ -1,8 +1,24 @@
 ## CONTAINERlab + KinD
 ![](https://github.com/huyouba1/clab/blob/main/KinD.png)
 
-## INFO
+## kind quick start
+```bash
+# https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
 
+# For AMD64 / x86_64
+[ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.26.0/kind-linux-amd64
+# For ARM64
+[ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.26.0/kind-linux-arm64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+```
+
+## containerlab quick start
+```bash
+# https://containerlab.dev/quickstart/#deploying-a-lab
+# 直接安装好containerlab 工具
+$ curl -sL https://containerlab.dev/setup | sudo -E bash -s "all"
+```
 
 ### 1. CONTAINERlab and KinD to deploy a new K8S cluster
 The tool KinD can deploy a K8S cluster quicklly, but all the nodes usder the same subnet, so if want set the nodes under different subnets, CONTAINERlab can provide the network resources.
@@ -35,6 +51,7 @@ clab-bgp-cplane-demo-worker3         NotReady   <none>          44m   v1.32.0   
 
 ![](https://github.com/huyouba1/clab/blob/main/CONTAINERlab.png)
 ### 3. Deploy the network resources with CONTAINERlab
+创建两个桥接设备并构建拓扑
 ```
 $  brctl  show
 bridge name     bridge id               STP enabled     interfaces
